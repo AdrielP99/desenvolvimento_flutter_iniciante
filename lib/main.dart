@@ -1,3 +1,6 @@
+import 'package:desenvolvimento_flutter_iniciante/models/pessoa.dart';
+import 'package:desenvolvimento_flutter_iniciante/widgets/pessoa_listtile.dart';
+import 'package:desenvolvimento_flutter_iniciante/widgets/stateless_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,77 +21,10 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: Text("Meu primeiro app")),
-        body: MeuStatelessWidget(),
+        body: PessoaListtile(
+          pessoa: Pessoa(id: 1, nome: "João", altura: 192, peso: 74.3),
+        ),
       ),
-    );
-  }
-}
-
-class MeuStatelessWidget extends StatefulWidget {
-  const MeuStatelessWidget({super.key});
-
-  @override
-  State<MeuStatelessWidget> createState() => _MeuStatelessWidgetState();
-}
-
-class _MeuStatelessWidgetState extends State<MeuStatelessWidget> {
-  int count = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Count: $count",
-              style: TextStyle(fontSize: 24, color: Colors.blue),
-            ),
-          ],
-        ),
-        SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: () {
-            setState(() {
-              count++;
-            });
-          },
-          child: Text("Clique Aqui!"),
-        ),
-        MeuStatefulWidget(
-          callback: () {
-            setState(() {
-              count++;
-            });
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class MeuStatefulWidget extends StatefulWidget {
-  final void Function() callback;
-  const MeuStatefulWidget({super.key, required this.callback});
-
-  @override
-  State<MeuStatefulWidget> createState() => _MeuStatefulWidgetState();
-}
-
-class _MeuStatefulWidgetState extends State<MeuStatefulWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ElevatedButton(
-          onPressed: () {
-            widget.callback();
-          },
-          child: Text("Botão de baixo"),
-        ),
-      ],
     );
   }
 }
